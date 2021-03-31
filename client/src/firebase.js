@@ -1,4 +1,6 @@
- import * as firebase from "firebase";
+import firebase from "firebase/app";
+import "firebase/auth";
+ 
  
  const firebaseConfig = {
     apiKey: "AIzaSyDk1qwBE1jnx_7TwqBTJ54ZfcX9EiCC538",
@@ -9,7 +11,11 @@
     appId: "1:500962156718:web:81d49131f3303f465d8d3f"
   };
   // Initialize Firebase
-  firebase.initializeApp(firebaseConfig);
+  if (!firebase.apps.length) {
+    firebase.initializeApp(firebaseConfig);
+  }
+   
 
   export const auth = firebase.auth()
-  export const googleAuthProvider = new firebase.auth.googleAuthProvider();
+  export const googleAuthProvider = new firebase.auth.GoogleAuthProvider()
+  export const facebookAuthProvider = new firebase.auth.FacebookAuthProvider()
