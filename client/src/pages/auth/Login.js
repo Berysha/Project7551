@@ -4,11 +4,11 @@ import {toast} from "react-toastify";
 import {Button} from "antd";
 import { 
     GoogleOutlined,
-    MailFilled, MailOutlined, FacebookOutlined,
+     MailOutlined, FacebookOutlined,
 } from '@ant-design/icons';
 import {useDispatch, useSelector} from "react-redux";
 import {Link} from "react-router-dom";
-import {createOrUpdateUser, rt} from "../../functions/auth";
+import {createOrUpdateUser} from "../../functions/auth";
 
 
 
@@ -21,7 +21,7 @@ const Login = ({history}) => {
         
         useEffect(() => {
           if(user && user.token) history.push("/");
-      }, [user]);
+      }, [user, history]);
 
         
         let dispatch = useDispatch()

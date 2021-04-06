@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {Menu} from "antd";
-import { MailOutlined, AppstoreOutlined, SettingOutlined, UserAddOutlined, UserOutlined, LogoutOutlined, } from '@ant-design/icons';
+import {  AppstoreOutlined, SettingOutlined, UserAddOutlined, UserOutlined, LogoutOutlined, } from '@ant-design/icons';
 import {Link} from"react-router-dom";
 import firebase from "firebase";
 import {useDispatch, useSelector} from "react-redux";
@@ -10,7 +10,7 @@ import "./header.css"
 const { SubMenu,Item } = Menu;
  
 const Header = () => {
-     const [current, setCurrent] = useState('home');
+     const [setCurrent] = useState('home');
      let dispatch = useDispatch();
      let {user} = useSelector((state) => ({...state}));
     let history = useHistory();
