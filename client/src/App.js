@@ -15,6 +15,7 @@ import UserRoute from "./components/routes/UserRoute"
 import Password from "./pages/user/Password";
 import Wishlist from "./pages/user/Wishlist";
 import AdminDashboard from "../src/pages/admin/AdminDashborad";
+import CategoryCreate from "../src/pages/admin/category/CategoryCreate";
 
 
 import {auth} from "./firebase";
@@ -67,6 +68,7 @@ const App = () =>  {
         <UserRoute exact path="/user/password" component={Password}/>
         <UserRoute exact path="/user/wishlist" component={Wishlist}/>
         <AdminRoute exact path="/admin/dashboard" component={AdminDashboard}/>
+        <AdminRoute exact path="/admin/category" component={CategoryCreate}/>
 
 
       

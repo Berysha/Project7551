@@ -7,31 +7,33 @@ import {useDispatch, useSelector} from "react-redux";
 import{useHistory} from "react-router-dom";
 import "./header.css"
 
-const { SubMenu,Item } = Menu;
- 
+const { SubMenu, Item } = Menu;
+
 const Header = () => {
-     const [setCurrent] = useState('home');
-     let dispatch = useDispatch();
-     let {user} = useSelector((state) => ({...state}));
-    let history = useHistory();
+  const [current, setCurrent] = useState("home");
 
-const handleClick = (e) => {
-// console.log(e.key);
-setCurrent(e.key);
-}
+  let dispatch = useDispatch();
+  let { user } = useSelector((state) => ({ ...state }));
 
-const logout = () =>{
-  firebase.auth().signOut()
-  dispatch({
-       type: "LOGOUT",
-        payload: null,
-  });
-  history.push("/login");
-};
+  let history = useHistory();
 
+  const handleClick = (e) => {
+    // console.log(e.key);
+    setCurrent(e.key);
+  };
+
+  const logout = () => {
+    firebase.auth().signOut();
+    dispatch({
+      type: "LOGOUT",
+      payload: null,
+    });
+    history.push("/login");
+  };
+  
 return (
   
-    <Menu onClick={handleClick} theme="dark" mode="horizontal">
+    <Menu onClick={handleClick}  theme="dark" mode="horizontal">
       <Item key="home" icon={<AppstoreOutlined />}>
        <Link to="/">Home</Link>
       </Item>
@@ -57,8 +59,16 @@ return (
        className="float-right"
        >
        
-          <Item key="setting:1">Option 1</Item>
-          <Item key="setting:2">Option 2</Item>
+       {user && user.role === "subscriber" &&  
+         <Item> 
+          <Link to="/user/history">Dashboard</Link>
+        </Item>}
+
+        {user && user.role === "admin" &&  
+         <Item> 
+          <Link to="/admin/dashboard">AdminDashboard</Link>
+        </Item>}
+         
           <Item icon={<LogoutOutlined/>} onClick={logout} >Logout</Item>
       
        
