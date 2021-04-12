@@ -173,7 +173,7 @@ return (
         <div className="container p-5">
           <div className="row">
              <div className="col-md-6 offset-md-3">
-             {loading ?  ( <h4 className="text-danger">Loading...</h4>
+             {loading ?  ( <h4 className="text-success">Loading...</h4>
              ) :  (<h4>Login</h4>)}
             
                 {loginForm()}
