@@ -2,19 +2,21 @@ import React, {useState, useEffect} from "react"
 import AdminNav from "../../../components/nav/AdminNav"
 import {toast} from "react-toastify"
 import {useSelector} from "react-redux"
-import {createCategory,
-        getCategories,
-        removeCategory} from "../../../functions/category"
+import {getCategories} from "../../../functions/category"
+import {createSub,
+       
+        removeSub} from "../../../functions/sub"
 import {Link} from "react-router-dom";
 import {EditOutlined, DeleteOutlined} from "@ant-design/icons"
 import CategoryForm from "../../../components/forms/CaregoryForm"
 import LocalSearch from "../../../components/forms/LocalSearch"
 
-const CategoryCreate = () => {
+const SubCreate = () => {
     const {user} = useSelector(state => ({...state}))
     const [name, setName] = useState("")
     const [loading, setLoading] = useState(false)
     const [categories,setCategories] = useState([])
+    const [category, setCategory] = useState("")
     
 
      //step 1
@@ -33,7 +35,7 @@ const CategoryCreate = () => {
         e.preventDefault()
        // console.log(name)
         setLoading(true)
-        createCategory({name}, user.token)
+        createSub({name, perent: category,}, user.token)
         .then((res) => {
             setLoading(false)
             setName("")
@@ -54,7 +56,7 @@ const CategoryCreate = () => {
         console.log(answer, slug)*/
         if(window.confirm("Delete?")){
             setLoading(true)
-            removeCategory(slug, user.token)
+            removeSub(slug, user.token)
             .then((res) => {
                     setLoading(false)
                     toast.error(`${res.data.name} deleted`)
@@ -90,12 +92,32 @@ const CategoryCreate = () => {
                     <div className="col">
                         {loading ?( <h4  
                         className="text-success">Loading..</h4>) : (
-               <h4>Create category</h4>)}
+               <h4>Create sub categories</h4>)}
            
                
-<CategoryForm  handleSubmit={handleSubmit}
+
+
+                 <div className="form-group">
+                     <label>ParentCategory</label>
+                     <select name="category"
+                             className="form-control" 
+                             onChange={(e) => setCategory(e.target.value)}>
+                                 <option>Pleace Select</option>
+                         {categories.length > 0 && categories.map((c) =>
+                          (<option key={c._id} value={c._id}>
+                             {c.name}
+                             </option>
+                             ))}
+                     </select>
+                 </div>
+
+                 {JSON.stringify(category)}
+
+                 <CategoryForm  handleSubmit={handleSubmit}
                  name={name}
                  setName={setName}/>
+
+          
 
                   {/* step 2 and step3  */}
                   <LocalSearch keyword={keyword}
@@ -105,7 +127,7 @@ const CategoryCreate = () => {
                      <hr/>
                 {/* step5 */}
                
-        {categories.filter(searched(keyword)).map((c) => (
+      {/*categories.filter(searched(keyword)).map((c) => (
                 <div className="alert alert-info" key={c._id}>{c.name}
                  <span  onClick={() => handleRemove(c.slug)} 
                 className="btn btn-sm float-right">
@@ -113,16 +135,16 @@ const CategoryCreate = () => {
                     </span>{" "} 
 
                     <Link className="btn btn-sm float-right" 
-                    to={`/admin/category/${c.slug}`}> 
+                    to={`/admin/sub/${c.slug}`}> 
                     <EditOutlined className="text-success" />
                 
                     </Link>
 
-        </div>))}
+      </div>))*/}
             </div>
         </div>
     </div>
     )
 }
 
-export default CategoryCreate;
+export default SubCreate;

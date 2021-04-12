@@ -41,6 +41,6 @@ exports.remove = async (req,res) => {
         res.json(deleted)
     
 } catch (err) {
-    res.status(400).send("Create delete failed")
+    res.status(400).send("Category delete failed")
 }
 }

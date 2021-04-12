@@ -17,6 +17,8 @@ import Wishlist from "./pages/user/Wishlist";
 import AdminDashboard from "../src/pages/admin/AdminDashborad";
 import CategoryCreate from "../src/pages/admin/category/CategoryCreate";
 import CategoryUpdate from "../src/pages/admin/category/CategoryUpdate";
+import SubCreate from "../src/pages/admin/sub/SubCreate";
+
 
 
 import {auth} from "./firebase";
@@ -75,6 +77,7 @@ const App = () =>  {
          path="/admin/category/:slug"
          component={CategoryUpdate}
          />
+          <AdminRoute exact path="/admin/sub" component={SubCreate}/>
 
       
       </Switch>
