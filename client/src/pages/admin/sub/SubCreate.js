@@ -4,7 +4,7 @@ import {toast} from "react-toastify"
 import {useSelector} from "react-redux"
 import {getCategories} from "../../../functions/category"
 import {createSub,
-       
+       getSub, getSubs,
         removeSub} from "../../../functions/sub"
 import {Link} from "react-router-dom";
 import {EditOutlined, DeleteOutlined} from "@ant-design/icons"
@@ -15,6 +15,7 @@ const SubCreate = () => {
     const {user} = useSelector(state => ({...state}))
     const [name, setName] = useState("")
     const [loading, setLoading] = useState(false)
+    const [subs,setSubs] = useState([])
     const [categories,setCategories] = useState([])
     const [category, setCategory] = useState("")
     
@@ -24,23 +25,31 @@ const SubCreate = () => {
 
     useEffect(() =>{
             loadCategories()
+            loadSubs()
     }, [])
 
-    const loadCategories = () => getCategories()
+    const loadCategories = () =>
+         getCategories()
         .then((c) => {
-            setCategories(c.data)
+        setCategories(c.data)
+        })
+
+        const loadSubs = () =>
+        getSubs()
+        .then((c) => {
+        setSubs(c.data)
         })
 
     const handleSubmit= (e) => {
         e.preventDefault()
        // console.log(name)
         setLoading(true)
-        createSub({name, perent: category,}, user.token)
+        createSub({name, parent: category,}, user.token)
         .then((res) => {
             setLoading(false)
             setName("")
             toast.success(`"${res.data.name}" is created`)
-            loadCategories()
+            loadSubs()
         })
         .catch(err => {
             console.log(err)
@@ -60,14 +69,14 @@ const SubCreate = () => {
             .then((res) => {
                     setLoading(false)
                     toast.error(`${res.data.name} deleted`)
-                    loadCategories()
+                    loadSubs()
             })
             .catch((err) => {
                 if(err.response.status === 400) {
                     toast.error(err.response.data)
                 }
                 setLoading(false)
-                loadCategories()
+                loadSubs()
             })
         }
     }
@@ -111,7 +120,7 @@ const SubCreate = () => {
                      </select>
                  </div>
 
-                 {JSON.stringify(category)}
+              
 
                  <CategoryForm  handleSubmit={handleSubmit}
                  name={name}
@@ -127,20 +136,22 @@ const SubCreate = () => {
                      <hr/>
                 {/* step5 */}
                
-      {/*categories.filter(searched(keyword)).map((c) => (
-                <div className="alert alert-info" key={c._id}>{c.name}
-                 <span  onClick={() => handleRemove(c.slug)} 
-                className="btn btn-sm float-right">
+      {subs.filter(searched(keyword)).map((s) => (
+                <div className="alert alert-info" key={s._id}>{s.name}
+                 <span  
+                    onClick={() => handleRemove(s.slug)} 
+                    className="btn btn-sm float-right"
+                    >
                     <DeleteOutlined className="text-danger" />
                     </span>{" "} 
 
                     <Link className="btn btn-sm float-right" 
-                    to={`/admin/sub/${c.slug}`}> 
+                    to={`/admin/sub/${s.slug}`}> 
                     <EditOutlined className="text-success" />
                 
                     </Link>
 
-      </div>))*/}
+      </div>))}
             </div>
         </div>
     </div>

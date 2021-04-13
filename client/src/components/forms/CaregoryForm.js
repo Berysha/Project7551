@@ -1,5 +1,6 @@
 import React from "react"
 
+
 const CategoryForm = ({handleSubmit, name, setName}) => (
     <form onSubmit={handleSubmit}>
     <div className="form-group">
