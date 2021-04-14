@@ -3,9 +3,7 @@ import AdminNav from "../../../components/nav/AdminNav"
 import {toast} from "react-toastify"
 import {useSelector} from "react-redux"
 import {getCategories} from "../../../functions/category"
-import {updateSub,
-       getSub,
-        removeSub} from "../../../functions/sub"
+import {updateSub, getSub, removeSub} from "../../../functions/sub"
 import {Link} from "react-router-dom";
 import {EditOutlined, DeleteOutlined} from "@ant-design/icons"
 import CategoryForm from "../../../components/forms/CaregoryForm"
@@ -15,10 +13,8 @@ import LocalSearch from "../../../components/forms/LocalSearch"
    
     
 
-    const SubUpdate = ({match, history}) => {
-
+        const SubUpdate = ({match, history}) => {
         const {user} = useSelector((state) => ({...state}))
-    
         const [name, setName] = useState('')
         const [loading, setLoading] = useState(false);
         const [categories, setCategories] = useState([]);

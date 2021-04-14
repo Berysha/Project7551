@@ -81,60 +81,58 @@ const SubCreate = () => {
         }
     }
  
-       //step3
-      
-    
-
-    //step4
     const searched= (keyword) => (c) => c
-     .name
-    .toLowerCase()
-    .includes(keyword)
+        .name
+        .toLowerCase()
+        .includes(keyword)
 
     
     return (
         <div className="container-fluid">
              <div className="row">
-                 <div className="col-md-2">
+                <div className="col-md-2">
                      <AdminNav />
-                 </div>
-                    <div className="col">
-                        {loading ?( <h4  
-                        className="text-success">Loading..</h4>) : (
-               <h4>Create sub categories</h4>)}
+                </div>
+        <div className="col">
+             {loading ?( <h4  
+             className="text-success">Loading..</h4>
+             ) : (
+            <h4>Create sub categories</h4>)}
            
                
 
 
                  <div className="form-group">
                      <label>ParentCategory</label>
-                     <select name="category"
-                             className="form-control" 
-                             onChange={(e) => setCategory(e.target.value)}>
-                                 <option>Pleace Select</option>
-                         {categories.length > 0 && categories.map((c) =>
-                          (<option key={c._id} value={c._id}>
-                             {c.name}
-                             </option>
-                             ))}
+                     <select 
+                        name="category"
+                        className="form-control" 
+                        onChange={(e) => setCategory(e.target.value)}>
+
+                        <option>Pleace Select</option>
+                        {categories.length > 0 && categories.map((c) =>
+                        (<option key={c._id} value={c._id}>
+                        {c.name}
+                        </option>
+                        ))}
                      </select>
                  </div>
 
               
 
-                 <CategoryForm  handleSubmit={handleSubmit}
-                 name={name}
-                 setName={setName}/>
+                 <CategoryForm 
+                     handleSubmit={handleSubmit}
+                     name={name}
+                     setName={setName}
+                 />
 
-          
-
-                  {/* step 2 and step3  */}
-                  <LocalSearch keyword={keyword}
-                             setKeyword= {setKeyword}
-                            />
+                  <LocalSearch 
+                    keyword={keyword}
+                    setKeyword= {setKeyword}
+                 />
 
                      <hr/>
-                {/* step5 */}
+              
                
       {subs.filter(searched(keyword)).map((s) => (
                 <div className="alert alert-info" key={s._id}>{s.name}
@@ -151,7 +149,7 @@ const SubCreate = () => {
                 
                     </Link>
 
-      </div>))}
+                </div>))}
             </div>
         </div>
     </div>
