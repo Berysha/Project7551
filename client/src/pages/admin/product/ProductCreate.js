@@ -66,7 +66,7 @@ const ProductCreate = () => {
                                 type="text"
                                 name="title"
                                 className="form-control"
-                                value={title}
+                                value={setValues.title}
                                 onChange={handleChange} 
                             />
                         </div>
@@ -77,7 +77,7 @@ const ProductCreate = () => {
                                 type="text"
                                 name="description"
                                 className="form-control"
-                                value={description}
+                                value={setValues.description}
                                 onChange={handleChange} 
                             />
                         </div>
@@ -88,7 +88,7 @@ const ProductCreate = () => {
                                 type="number"
                                 name="price"
                                 className="form-control"
-                                value={price}
+                                value={setValues.price}
                                 onChange={handleChange} 
                             />
                         </div>
@@ -113,7 +113,7 @@ const ProductCreate = () => {
                                 type="number"
                                 name="quantity"
                                 className="form-control"
-                                value={quantity}
+                                value={setValues.quantity}
                                 onChange={handleChange} 
                             />
                         </div>
@@ -142,7 +142,7 @@ const ProductCreate = () => {
                             </select>
                         </div>
 
-                        <button className="btn btn-outline-info"> Save </button>
+                        <button className="btn btn-outline-success"> Save </button>
                     </form>   
 
                 </div>
