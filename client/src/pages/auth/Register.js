@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from "react";
 import {auth} from "../../firebase";
 import {toast} from "react-toastify";
-import "./css/Home.css";
+import "../site.css";
 import { useSelector} from "react-redux";
 
 

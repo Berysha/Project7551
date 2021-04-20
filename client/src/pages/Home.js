@@ -1,10 +1,10 @@
 import React from "react";
-import "./home.css";
+import "./site.css";
 
 
 const Home = () => (
-    <div className="home">
-      <p className="p">react home</p>
+    <div className="home" >
+      <p className="p">React Home</p>
     
     </div>
   );

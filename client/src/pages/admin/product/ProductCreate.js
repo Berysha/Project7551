@@ -24,6 +24,9 @@ const ProductCreate = () => {
 
     const [values, setValues] = useState(initialState);
 
+    //redux
+    const{user} = useSelector((state) => ({...state}))
+
     //destruction
     const { 
         title, 
@@ -42,10 +45,23 @@ const ProductCreate = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        createProduct(values, user.token )
+        .then(res => {
+            console.log(res)
+            window.alert(`"${res.data.title}" is created`)
+            window.location.reload()
+        })
+        .catch(err => {
+            console.log(err)
+            if (err.response.status === 400) 
+                toast.error(err.response.data)
+                
+        })
     };
 
     const handleChange = (e) => {
-        
+        setValues({...values,[e.target.name]: e.target.value})
+        //console.log(e.target.name, "----", e.target.value)
     };
 
 
@@ -66,7 +82,7 @@ const ProductCreate = () => {
                                 type="text"
                                 name="title"
                                 className="form-control"
-                                value={setValues.title}
+                                value={title}
                                 onChange={handleChange} 
                             />
                         </div>
@@ -77,7 +93,7 @@ const ProductCreate = () => {
                                 type="text"
                                 name="description"
                                 className="form-control"
-                                value={setValues.description}
+                                value={description}
                                 onChange={handleChange} 
                             />
                         </div>
@@ -88,7 +104,7 @@ const ProductCreate = () => {
                                 type="number"
                                 name="price"
                                 className="form-control"
-                                value={setValues.price}
+                                value={price}
                                 onChange={handleChange} 
                             />
                         </div>
@@ -113,7 +129,7 @@ const ProductCreate = () => {
                                 type="number"
                                 name="quantity"
                                 className="form-control"
-                                value={setValues.quantity}
+                                value={quantity}
                                 onChange={handleChange} 
                             />
                         </div>
@@ -121,24 +137,28 @@ const ProductCreate = () => {
                         <div className="form-group">
                             <label> Colors </label>
                             <select
-                                name="colors"
+                                name="color"
                                 className="form-control"
                                 onChange={handleChange}
                             >
                                 <option> Please select </option>
-                                {colors.map(c => <option key={c} value={c}> {c} </option>)}
+                                {colors.map((c) => <option key={c} value={c}>
+                                     {c} 
+                                </option>)}
                             </select>
                         </div>
 
                         <div className="form-group">
                             <label> Brands </label>
                             <select
-                                name="brands"
+                                name="brand"
                                 className="form-control"
                                 onChange={handleChange}
                             >
                                 <option> Please select </option>
-                                {brands.map(b => <option key={b} value={b}> {b} </option>)}
+                                {brands.map((b) => <option key={b} value={b}>
+                                     {b} 
+                                </option>)}
                             </select>
                         </div>
 

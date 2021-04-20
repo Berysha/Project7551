@@ -33,7 +33,7 @@ const Header = () => {
   
 return (
   
-    <Menu onClick={handleClick}  theme="dark" mode="horizontal">
+    <Menu  className="menu menu-dark bg-secondary" onClick={handleClick} theme="dark" mode="horizontal">
       <Item key="home" icon={<AppstoreOutlined />}>
        <Link to="/">Home</Link>
       </Item>

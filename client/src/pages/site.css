@@ -1,4 +1,3 @@
-
 .btn-dark{
     background: #FFA500;
     background: -moz-linear-gradient(-45deg, #343a40 0%, #667584 50%, #4e5256 51%, #242a30 71%, #343a40 100%);
@@ -17,4 +16,21 @@
     font-size: 18px;
     border-radius: 20px;
     
+}
+.home {
+    background-image: url(../images/heroshot.jpg);
+    padding: 300px;
+    background-size: cover;
+}
+.p {
+    font-family:  Broadway;
+    text-transform: uppercase;
+    font-size: 50px;
+    font-weight: bold;
+    -webkit-text-fill-color: #6b6060e5;
+    -webkit-text-stroke-width: 2px;
+    color: #0c0c0cd3;
+    
+    
+
 }

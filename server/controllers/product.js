@@ -5,7 +5,7 @@ exports.create = async (req, res) => {
     try{
         console.log(req.body)
         req.body.slug = slugify(req.body.title)
-        const newProduct =await new Product(req.body)
+        const newPorduct = await new Product(req.body).save()
         res.json(newPorduct)
     }catch(err) {
         console.log(err)
