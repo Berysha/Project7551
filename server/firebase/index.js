@@ -9,5 +9,3 @@ admin.initializeApp({
 });
  
  module.exports = admin;
-
- dvdxxydvdvdsv
